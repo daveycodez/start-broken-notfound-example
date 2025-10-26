@@ -28,6 +28,7 @@ export const Route = createRootRoute({
 
 	shellComponent: RootDocument,
 	// notFoundComponent: () => <div>Root Not Found</div>, // Uncomment this to see notFound() happen from index
+	// When this is uncommented, you will see Root Not Found from index, and the CSS will flicker
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
