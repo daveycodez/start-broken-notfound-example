@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as EnRouteRouteImport } from './routes/en/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EnIndexRouteImport } from './routes/en/index'
-import { Route as EnAboutRouteImport } from './routes/en/about'
 
 const EnRouteRoute = EnRouteRouteImport.update({
   id: '/en',
@@ -29,36 +28,28 @@ const EnIndexRoute = EnIndexRouteImport.update({
   path: '/',
   getParentRoute: () => EnRouteRoute,
 } as any)
-const EnAboutRoute = EnAboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => EnRouteRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/en': typeof EnRouteRouteWithChildren
-  '/en/about': typeof EnAboutRoute
   '/en/': typeof EnIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/en/about': typeof EnAboutRoute
   '/en': typeof EnIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/en': typeof EnRouteRouteWithChildren
-  '/en/about': typeof EnAboutRoute
   '/en/': typeof EnIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/en' | '/en/about' | '/en/'
+  fullPaths: '/' | '/en' | '/en/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/en/about' | '/en'
-  id: '__root__' | '/' | '/en' | '/en/about' | '/en/'
+  to: '/' | '/en'
+  id: '__root__' | '/' | '/en' | '/en/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -89,23 +80,14 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnIndexRouteImport
       parentRoute: typeof EnRouteRoute
     }
-    '/en/about': {
-      id: '/en/about'
-      path: '/about'
-      fullPath: '/en/about'
-      preLoaderRoute: typeof EnAboutRouteImport
-      parentRoute: typeof EnRouteRoute
-    }
   }
 }
 
 interface EnRouteRouteChildren {
-  EnAboutRoute: typeof EnAboutRoute
   EnIndexRoute: typeof EnIndexRoute
 }
 
 const EnRouteRouteChildren: EnRouteRouteChildren = {
-  EnAboutRoute: EnAboutRoute,
   EnIndexRoute: EnIndexRoute,
 }
 

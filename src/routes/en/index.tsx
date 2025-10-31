@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { loadMessages } from "@/lib/messages";
 
 export const Route = createFileRoute("/en/")({
 	component: App,
@@ -8,7 +9,7 @@ export const Route = createFileRoute("/en/")({
 		// If you uncomment the line below, the Route.beforeLoad
 		// will get called twice when modifying en.json
 
-		// await loadMessages("en");
+		await loadMessages("en");
 
 		// SAME behavior If you uncomment the line below, the Route.beforeLoad
 		// will get called twice when modifying en.json
