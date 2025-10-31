@@ -17,5 +17,9 @@ export const Route = createFileRoute("/en")({
 });
 
 function RouteComponent() {
+	const { messages } = Route.useRouteContext();
+
+	console.log("messages", messages);
+
 	return <Outlet />;
 }
